@@ -2,9 +2,7 @@
 
 L_PREFIX="[camera.video] "
 INTEGER='^[0-9]+$'
-TZ='Europe/Moscow'; export TZ
 NAME=$(date +"%Y-%m-%d_%H%M")
-
 
 if [ -z $1 ]; then
     echo $L_PREFIX"Duration is not set"
@@ -17,7 +15,6 @@ if ! [[ $DURATION =~ $INTEGER ]] ; then
 fi
 DURATION=$(($DURATION * 1000))
 
-
 if [ ! -z $2 ]; then
     if [[ $2 =~ $INTEGER ]] ; then
         # it's segemt
@@ -29,14 +26,12 @@ if [ ! -z $2 ]; then
     fi
 fi
 
-
 if [ -z "$DST" ]; then
     DST=$3
     if [ -z "$DST" ]; then
         DST=$SUPERDUPERPI_DATA/camera/videos/$NAME.mp4
     fi
 fi
-
 
 if [ -z $SEGMENT ]; then
     rpicam-vid --width 640 --height 480 -t $DURATION -o $DST
@@ -45,7 +40,6 @@ else
 fi
 
 echo $L_PREFIX"Video is saved to $DST"
-
 
 # raspivid
 # https://raspberrypi.stackexchange.com/questions/27082/how-to-stream-raspivid-to-linux-and-osx-using-gstreamer-vlc-or-netcat {

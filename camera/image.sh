@@ -1,9 +1,7 @@
 #!/bin/bash
 
 L_PREFIX="[camera.image] "
-TZ='Europe/Moscow'; export TZ
 NAME=$(date +"%Y-%m-%d_%H%M")
-
 
 DST=$1
 if [ -z "$DST" ]; then
@@ -13,7 +11,6 @@ fi
 
 rpicam-vid --width 640 --height 480 -q 80 -o $DST
 echo $L_PREFIX"Image is saved to $DST"
-
 
 # NFS setup:  http://www.instructables.com/id/Turn-Raspberry-Pi-into-a-Network-File-System-versi/
 # NFS setup: https://www.htpcguides.com/configure-nfs-server-and-nfs-client-raspberry-pi/

@@ -1,6 +1,8 @@
 #!/bin/bash
 
-export SUPERDUPERPIDATA=$HOME/SuperDuperPiData
-mkdir -p $SUPERDUPERPIDATA
-mkdir -p $SUPERDUPERPIDATA/camera/images
-mkdir -p $SUPERDUPERPIDATA/camera/videos
+TZ='Europe/Moscow'; export TZ
+export SUPERDUPERPI_DATA=$HOME/SuperDuperPiData
+mkdir -p $SUPERDUPERPI_DATA
+mkdir -p $SUPERDUPERPI_DATA/camera/images
+mkdir -p $SUPERDUPERPI_DATA/camera/videos
+mkdir -p $SUPERDUPERPI_DATA/temperature
