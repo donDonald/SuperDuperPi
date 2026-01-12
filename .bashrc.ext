@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export SUPERDUPERPIDATA=$HOME/SuperDuperPiData
+mkdir -p $SUPERDUPERPIDATA
+mkdir -p $SUPERDUPERPIDATA/camera/images
+mkdir -p $SUPERDUPERPIDATA/camera/videos
