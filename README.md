@@ -4,17 +4,24 @@
 
 
 # Intro
-A basic example how to turn Raspberry Pi into surveillance station
+A basic example how to turn Raspberry Pi into surveillance station.
+Contains next features:
+* leds - to manipulate leds, swith it on/off
+* temperature - to collect temperature sensors values
+* camera - to take camera shots and record videos
 
 
-# Setup environment variables
+# Setup
+
+
+## Setup environment variables
 Append this to ~/.bashrc:
 ```
 . ~/src/SuperDuperPi/.bashrc.ext
 ```
 
 
-# Install gpio WiringPi library
+## Install gpio WiringPi library
 ```
 cd 3rd_party
 tar xzvf WiringPi.tar.gz
@@ -23,13 +30,13 @@ cd WiringPi
 ```
 
 
-# Install camera apps
+## Install camera apps
 ```
 sudo apt install libcamera-apps
 ```
 
 
-# Setup temperature sensors
+## Setup temperature sensors
 
 To get drivers loaded:
 ```
@@ -58,10 +65,10 @@ dtoverlay=w1-gpio
 ```
 
 
-# Setup periodical jobs via crontab
+## Setup periodical jobs via crontab
 
 
-## To collect temperature
+### To collect temperature
 ```
 crontab -e
 ```
@@ -72,7 +79,7 @@ To start a task for every 10 minutes append:
 ```
 
 
-## To take a camera shot
+### To take a camera shot
 ```
 crontab -e
 ```
@@ -83,7 +90,7 @@ To start a task for every 10 minutes append:
 ```
 
 
-## To take a video
+### To take a video
 ```
 crontab -e
 ```
