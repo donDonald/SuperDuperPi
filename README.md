@@ -1,3 +1,8 @@
+<div align="center">
+    <img src="images/license-MIT-blue.svg">
+</div>
+
+
 # Intro
 A basic example how to turn Raspberry Pi into surveillance station
 
