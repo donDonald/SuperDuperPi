@@ -33,8 +33,6 @@ if [ ! -z "$TIMES" ]; then
     fi
 fi
 
-gpio mode $INDEX out
-
 if [ -z "$TIMES" ]; then
     echo $L_PREFIX"Start blinking led $INDEX with period $PERIOD seconds"
     COUNTER=0

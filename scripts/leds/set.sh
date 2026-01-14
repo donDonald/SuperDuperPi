@@ -1,6 +1,6 @@
 #!/bin/bash
 
-L_PREFIX="[let.set] "
+L_PREFIX="[led.set] "
 INTEGER='^[0-9]+$'
 
 if [ -z $1 ]; then
@@ -24,12 +24,6 @@ if ! [[ $STATE =~ $INTEGER ]] ; then
     echo $L_PREFIX"Incorrect state"
     exit 1
 fi
-
-gpio mode 0 out
-gpio mode 1 out
-gpio mode 2 out
-gpio mode 3 out
-gpio mode 4 out
 
 gpio write $INDEX $STATE
 echo $L_PREFIX"Led $INDEX is set to $STATE"

@@ -21,6 +21,17 @@ Append this to ~/.bashrc:
 ```
 
 
+## Install nodejs
+```
+cd 3rd_part
+tar -xzf node-v20.20.0-linux-armv6l.tar.gz
+cd node-v20.20.0-linux-armv6l
+sudo cp -R * /usr/local/
+cd ..
+rm -rf node-v20.20.0-linux-armv6l
+```
+
+
 ## Install gpio WiringPi library
 ```
 cd 3rd_party
@@ -65,7 +76,18 @@ dtoverlay=w1-gpio
 ```
 
 
-## Setup periodical jobs via crontab
+## Perform initial setup upon system reboot
+```
+crontab -e
+```
+
+To perform initial setup upon reboot add this
+```
+@reboot ~/src/SuperDuperPi/scripts/cron_init.sh
+```
+
+
+# Setup periodical jobs via crontab(if needed)
 
 
 ### To collect temperature
