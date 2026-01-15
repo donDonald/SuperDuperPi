@@ -4,7 +4,6 @@ const app = express();
 const PORT = 3000;
 
 const api = {};
-api.leds = {};
 
 
 // Parse URL-encoded bodies (as sent by HTML forms)
@@ -25,10 +24,15 @@ app.get('/', (req, res) => {
 });
 
 
+api.leds = {};
 api.leds.status = new (require('./api/leds/Status'))(app);
 api.leds.set = new (require('./api/leds/Set'))(app);
 api.leds.blink = new (require('./api/leds/Blink'))(app);
 api.leds.toggle = new (require('./api/leds/Toggle'))(app);
+
+
+api.temperature = {};
+api.temperature.values = new (require('./api/temperature/Values'))(app);
 
 
 // Start the server and listen on the specified port

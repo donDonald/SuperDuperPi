@@ -97,7 +97,7 @@ crontab -e
 
 To start a task for every 10 minutes append:
 ```
-*/10 * * * * ~/src/SuperDuperPi/temperature/cron_temperature.sh
+*/10 * * * * ~/src/SuperDuperPi/scripts/temperature/cron_values.sh
 ```
 
 
