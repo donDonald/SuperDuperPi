@@ -1,6 +1,6 @@
 #!/bin/bash
 
-L_PREFIX="[led.toggle] "
+L_PREFIX=""
 INTEGER='^[0-9]+$'
 
 if [ -z $1 ]; then
@@ -16,4 +16,4 @@ fi
 
 gpio toggle $INDEX
 STATE=$(gpio read $INDEX)
-echo $L_PREFIX"Led $INDEX is toggled to $STATE"
+echo $L_PREFIX"Led, index:$INDEX, state:$STATE"

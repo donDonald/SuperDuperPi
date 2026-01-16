@@ -1,6 +1,6 @@
 #!/bin/bash
 
-L_PREFIX="[led.set] "
+L_PREFIX=""
 INTEGER='^[0-9]+$'
 
 if [ -z $1 ]; then
@@ -26,4 +26,5 @@ if ! [[ $STATE =~ $INTEGER ]] ; then
 fi
 
 gpio write $INDEX $STATE
-echo $L_PREFIX"Led $INDEX is set to $STATE"
+STATE=$(gpio read $INDEX)
+echo $L_PREFIX"Led, index:$INDEX, state:$STATE"

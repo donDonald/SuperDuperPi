@@ -3,31 +3,24 @@ const exec_cb = require('child_process').exec;
 const exec = util.promisify(exec_cb);
 
 
-class Set
-{
-    constructor()
-    {
+class Set {
+    constructor() {
         this.name = "leds.Set";
         this.target_directory = `${process.env.SUPER_DUPER_PI_SURVELIANCE_ROOT}/scripts/leds`;
     }
 
-    log(message)
-    {
+    log(message) {
         console.log(`[${this.name}] ${message}`);
     }
 
-    async do(index, state)
-    {
+    async do(index, state) {
         this.log(`do(${index}, ${state}) {`)
         let result;
-        try
-        {
+        try {
             const cmd = `./set.sh ${index} ${state}`;
             let {stdout, stderr} = await exec(cmd, {cwd: this.target_directory});
             result = [stdout, stderr];
-        }
-        catch (error)
-        {
+        } catch (error) {
             throw error;
         }
         this.log(`} do(${index}, ${state})`)
@@ -36,33 +29,37 @@ class Set
 }
 
 
-class Post
-{
-    constructor(app)
-    {
+class Post {
+    constructor(app) {
         this.name = "leds.Set.Post";
         this.set = new Set();
         app.post('/leds/api/set', async (req, res) => {
-            try
-            {
+            try {
                 const index = req.body.index;
                 const state = req.body.state;
-                const result = await this.set.do(index, state);
-                res.status(200).send(result);
-            }
-            catch (error)
-            {
-                res.status(500).render('error', {
-                    title: 'Error',
-                    explanation0: `${error}`,
-                    explanation1: `${error.stdout}`
+                const set = await this.set.do(index, state);
+                const lines = set.split('\n');
+                const result = {};
+                lines.forEach((line)=>{
+                    if (line.length>0) {
+                        const pairs = line.split(',');
+                        const index_pair = pairs[1];
+                        const index_value = index_pair.split(':');
+                        const state_pair = pairs[2];
+                        const key_value = state_pair.split(':');
+                        const led = {};
+                        led[key_value[0]] = key_value[1];
+                        result[index_value[1]] = led;
+                    }
                 });
+                res.status(200).json(result);
+            } catch (error) {
+                res.status(500).json({error:`${error}`, stdout:`${error.stdout}`});
             }
         });
     }
 
-    log(message)
-    {
+    log(message) {
         console.log(`[${this.name}] ${message}`);
     }
 }
