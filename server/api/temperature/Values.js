@@ -3,31 +3,24 @@ const exec_cb = require('child_process').exec;
 const exec = util.promisify(exec_cb);
 
 
-class Values
-{
-    constructor()
-    {
+class Values {
+    constructor() {
         this.name = "temperature.Values";
         this.target_directory = `${process.env.SUPER_DUPER_PI_SURVELIANCE_ROOT}/scripts/temperature`;
     }
 
-    log(message)
-    {
+    log(message) {
         console.log(`[${this.name}] ${message}`);
     }
 
-    async do()
-    {
+    async do() {
         this.log(`do() {`)
         let result;
-        try
-        {
+        try {
             const cmd = `./values.sh`;
             let {stdout, stderr} = await exec(cmd, {cwd: this.target_directory});
             result = [stdout, stderr];
-        }
-        catch (error)
-        {
+        } catch (error) {
             throw error;
         }
         this.log(`} do()`)
@@ -36,15 +29,12 @@ class Values
 }
 
 
-class Get
-{
-    constructor(app)
-    {
+class Get {
+    constructor(app) {
         this.name = "temperature.Values.Get";
         this.values = new Values();
         app.get('/temperature/api/values', async (req, res) => {
-            try
-            {
+            try {
                 const values = await this.values.do();
                 const lines = values.split('\n');
                 const result = {};
@@ -66,20 +56,13 @@ class Get
                     }
                 });
                 res.status(200).json(result);
-            }
-            catch (error)
-            {
-                res.status(500).render('error', {
-                    title: 'Error',
-                    explanation0: `${error}`,
-                    explanation1: `${error.stdout}`
-                });
+            } catch (error) {
+                res.status(500).json({error:`${error}`, stdout:`${error.stdout}`});
             }
         });
     }
 
-    log(message)
-    {
+    log(message) {
         console.log(`[${this.name}] ${message}`);
     }
 }
