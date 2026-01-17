@@ -1,16 +1,16 @@
 #!/bin/bash
 
-L_PREFIX="[camera.image] "
+L_PREFIX="[camera.image], "
 NAME=$(date +"%Y-%m-%d_%H%M")
 
-DST=$1
-if [ -z "$DST" ]; then
-    DST=$SUPERDUPERPI_DATA/camera/images/$NAME.jpg
+DESTINATION=$1
+if [ -z "$DESTINATION" ]; then
+    DESTINATION=$SUPERDUPERPI_DATA/camera/images/$NAME.jpg
 fi
 
 
-rpicam-vid --width 640 --height 480 -q 80 -o $DST
-echo $L_PREFIX"Image is saved to $DST"
+rpicam-vid --width 640 --height 480 -q 80 -o $DESTINATION
+echo $L_PREFIX"destination:$DESTINATION"
 
 # NFS setup:  http://www.instructables.com/id/Turn-Raspberry-Pi-into-a-Network-File-System-versi/
 # NFS setup: https://www.htpcguides.com/configure-nfs-server-and-nfs-client-raspberry-pi/

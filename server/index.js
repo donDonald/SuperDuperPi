@@ -35,6 +35,10 @@ api.temperature = {};
 api.temperature.values = new (require('./api/temperature/Values'))(app);
 
 
+api.camera = {};
+api.camera.image = new (require('./api/camera/Image'))(app);
+
+
 // Start the server and listen on the specified port
 app.listen(PORT, () => {
     console.log(`Example app listening at http://localhost:${PORT}`);
