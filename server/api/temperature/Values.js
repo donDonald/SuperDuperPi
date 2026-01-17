@@ -33,7 +33,7 @@ class Get {
     constructor(app) {
         this.name = "temperature.Values.Get";
         this.values = new Values();
-        app.get('/temperature/api/values', async (req, res) => {
+        app.get('/api/temperature/values', async (req, res) => {
             try {
                 const values = await this.values.do();
                 const lines = values.split('\n');

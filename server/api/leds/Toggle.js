@@ -33,7 +33,7 @@ class Post {
     constructor(app) {
         this.name = "leds.Toggle.Post";
         this.toggle = new Toggle();
-        app.post('/leds/api/toggle', async (req, res) => {
+        app.post('/api/leds/toggle', async (req, res) => {
             try {
                 const index = req.body.index;
                 const toggle = await this.toggle.do(index);

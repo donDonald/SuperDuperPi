@@ -33,7 +33,7 @@ class Post {
     constructor(app) {
         this.name = "leds.Set.Post";
         this.set = new Set();
-        app.post('/leds/api/set', async (req, res) => {
+        app.post('/api/leds/set', async (req, res) => {
             try {
                 const index = req.body.index;
                 const state = req.body.state;

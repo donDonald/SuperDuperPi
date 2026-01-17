@@ -35,7 +35,7 @@ class Get {
     constructor(app) {
         this.name = "camera.Image.Get";
         this.image = new Image();
-        app.get('/camera/api/image', async (req, res) => {
+        app.get('/api/camera/image', async (req, res) => {
             try {
                 const image = await this.image.do();
                 const lines = image.split('\n');

@@ -33,7 +33,7 @@ class Post {
     constructor(app) {
         this.name = "leds.Blink.Post";
         this.blink = new Blink();
-        app.post('/leds/api/blink', async (req, res) => {
+        app.post('/api/leds/blink', async (req, res) => {
             try {
                 const index = req.body.index;
                 const period = req.body.period;

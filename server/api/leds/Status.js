@@ -33,7 +33,7 @@ class Get {
     constructor(app) {
         this.name = "leds.Status.Get";
         this.status = new Status();
-        app.get('/leds/api/status', async (req, res) => {
+        app.get('/api/leds/status', async (req, res) => {
             try {
                 const index = req.body.index;
                 const status = await this.status.do(index);
